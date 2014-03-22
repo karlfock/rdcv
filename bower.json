@@ -1,0 +1,11 @@
+{
+    "name": "rdcv",
+    "version": "0.0.1",
+
+
+    "devDependencies": {
+        "angular": "~1.2.1",
+        "requirejs": "~2.1.9",
+        "requirejs-text": "~2.0.10"
+    }
+}
