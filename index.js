@@ -24,14 +24,20 @@ app.listen(3000);
 
 
 app.get('/db/profile', function(req, res) {
-
-    // get from db
-
-    res.json({
-        section1: 'bla bla',
-        section2: 'jada jada'
-    });
+    getDoc('profile', res);
 });
+
+function getDoc(name, res) {
+    var cv = nano.use('cv');
+    cv.get(name, function(err, body) {
+        if (!err) {
+            console.log('getting document:', name);
+            res.send(body);
+        } else {
+            console.log('error getting document:', name, 'error:', err);
+        }
+    });
+}
 
 app.post('/db/profile', function(req, res) {
     var profile = req.body;

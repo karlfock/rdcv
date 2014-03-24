@@ -40,6 +40,7 @@ define(['angular', 'services'], function(angular, services) {
 
                     console.log('profile changed:', oldValue, '-->', newValue);
 
+                    // TODO: make sure not updated when undefined or no changes.
                     // persist when value changed
                     contentService.updateProfile(scope.profile);
 
