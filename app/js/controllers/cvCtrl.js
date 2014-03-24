@@ -1,8 +1,18 @@
-"use strict";
+'use strict';
 
 define([], function() {
-    return function($scope, contentService) {
-        $scope.summary = contentService.getSummary();
-        $scope.$apply();
+    return function($scope, $http) {
+
+
+        $http({
+            method: 'GET',
+            url: '/db/profile'
+        }).
+        success(function(data, status, headers, config) {
+            $scope.profile = data;
+        }).
+        error(function(data, status, headers, config) {});
+
+
     };
 });

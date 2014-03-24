@@ -9,19 +9,14 @@
 
 <body ng-controller="CvCtrl">
 
-{{summary}}
 
-    <header>CURRICULUM VITAE – KARL FOCK CM logga</header>
+<div contentEditable="true" ng-model="profile.section1" strip-br="true"></div>
 
-    <nav>
-        profil uppdrag
-    </nav>
 
-    <aside>
-        
-    </aside>
+<pre>model = {{profile.section1}}</pre>
+ 
 
-    <script data-main="app/js/main" src="/bower_components/requirejs/require.js"></script>      
+    <script data-main="app/js/main" src="/bower_components/requirejs/require.js"></script>
 </body>
 
 </html>

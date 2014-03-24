@@ -1,13 +1,20 @@
-define(["angular"], function(angular) {
-    "use strict";
+define(['angular'], function(angular) {
+    'use strict';
 
-    return angular.module("cvApp.services", [])
+    angular.module('cvApp.services', [])
 
-    .service("ContentService", function($scope, $injector) {
-        require(["services/contentService"], function(contentService) {
-            $injector.invoke(contentService, this, {
-                "$scope": $scope
-            });
-        });
+    .service('contentService', function($http) {
+
+
+        return {
+            updateProfile: function(profile) {
+
+                $http.post('/db/profile', profile)
+                    .success(function(data, status, headers, config) {})
+                        .error(function(data, status, headers, config) {});
+
+            }
+        };
     });
+
 });

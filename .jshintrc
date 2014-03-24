@@ -14,7 +14,8 @@
     "describe": true,
     "it": true,
     "beforeEach": true,
-    "define": true
+    "define": true,
+    "__dirname": true
   },
   "validthis": true,
   "globalstrict": true,
