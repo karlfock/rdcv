@@ -11,7 +11,7 @@ define(['angular'], function(angular) {
 
                 $http.post('/db/profile', profile)
                     .success(function(data, status, headers, config) {})
-                        .error(function(data, status, headers, config) {});
+                    .error(function(data, status, headers, config) {});
 
             }
         };

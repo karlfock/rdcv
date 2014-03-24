@@ -4,6 +4,8 @@ var path = require('path');
 var express = require('express');
 var app = express();
 
+var nano = require('nano')('http://localhost:5984');
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -34,7 +36,32 @@ app.get('/db/profile', function(req, res) {
 app.post('/db/profile', function(req, res) {
     var profile = req.body;
     console.log('*** post ***', profile);
+
+    // put in couch db
+    profile.doc_key = 'profile';
+    insert_doc(profile, 0);
 });
+
+function insert_doc(mydoc, tried) {
+    var cv = nano.use('cv');
+    cv.insert(mydoc, mydoc.doc_key, function(err, http_body, http_header) {
+        if (err) {
+            if (err.error === 'conflict' && tried < 1) {
+
+                // get record _rev and retry
+                return cv.get(mydoc.doc_key, function(err, doc) {
+
+                    mydoc._rev = doc._rev;
+                    insert_doc(mydoc, tried + 1);
+
+                });
+
+            }
+        }
+
+    });
+}
+
 
 // run debug
 // node --debug-brk index.js
