@@ -1,0 +1,44 @@
+body {
+    background-color: #DCDBD9;
+    color: #2C2C2C;
+    font: normal 100% Cambria, Georgia, serif;
+}
+
+.profile {
+    font: Calibri, Optima, Arial, sans-serif; 
+    letter-spacing: 0.15em;
+}
+.profile2 {
+    font: Calibri, Optima, Arial, sans-serif; 
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.main-title {
+    background: #000;
+    color: #FFF;
+    font: normal 3.625em/0.9 "League Gothic", "Arial Narrow", Arial, sans-serif;  /* 58px / 16px */
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 24px; font-style: italic; font-weight: normal;
+}
+h1 a {
+    color: #747474;
+    font: bold 11px Calibri, Optima, Arial, sans-serif; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+h1 a {
+    font: bold 0.458333333333333em Calibri, Optima, Arial, sans-serif;  /* 11px / 24px */
+    color: #747474;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+
+

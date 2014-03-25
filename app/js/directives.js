@@ -1,4 +1,4 @@
-define(['angular', 'services'], function(angular, services) {
+define(['angular'], function(angular) {
     'use strict';
 
     angular.module('cvApp.directives', ['cvApp.services'])
