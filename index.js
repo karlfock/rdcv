@@ -27,6 +27,7 @@ app.get('/db/profile', function(req, res) {
     getDoc('profile', res);
 });
 
+// TODO: use promise instead of passing res
 function getDoc(name, res) {
     var cv = nano.use('cv');
     cv.get(name, function(err, body) {
@@ -44,10 +45,11 @@ app.post('/db/profile', function(req, res) {
     
     // put in couch db
     profile.doc_key = 'profile';
-    insert_doc(profile, 0);
+    insert_doc(profile, 0, res);
 });
 
-function insert_doc(mydoc, tried) {
+// TODO: use promise instead of passing res
+function insert_doc(mydoc, tried, res) {
     var cv = nano.use('cv');
     cv.insert(mydoc, mydoc.doc_key, function(err, http_body, http_header) {
         if (err) {
@@ -57,13 +59,13 @@ function insert_doc(mydoc, tried) {
                 return cv.get(mydoc.doc_key, function(err, doc) {
 
                     mydoc._rev = doc._rev;
-                    insert_doc(mydoc, tried + 1);
-
+                    insert_doc(mydoc, tried + 1, res);
                 });
 
             }
         } else {
             console.log('updating document: %s:', mydoc.doc_key, mydoc);
+            res.send(mydoc);
         }
     });
 }
