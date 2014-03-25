@@ -25,6 +25,9 @@ define(['angular', 'services'], function(angular, services) {
                     scope.$apply(function() {
                         ctrl.$setViewValue(html);
                     });
+
+                    contentService.updateProfile(scope.profile);
+
                 });
 
                 // model -> view
@@ -34,18 +37,6 @@ define(['angular', 'services'], function(angular, services) {
 
                 // load init value from DOM
                 ctrl.$setViewValue(elm.html());
-
-                var deepEqual = true;
-                scope.$watch('profile', function(newValue, oldValue) {
-
-                    console.log('profile changed:', oldValue, '-->', newValue);
-
-                    // TODO: make sure not updated when undefined or no changes.
-                    // persist when value changed
-                    contentService.updateProfile(scope.profile);
-
-
-                }, deepEqual);
             }
         };
     });

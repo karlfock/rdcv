@@ -31,7 +31,7 @@ function getDoc(name, res) {
     var cv = nano.use('cv');
     cv.get(name, function(err, body) {
         if (!err) {
-            console.log('getting document:', name);
+            console.log('getting document: %s:', name, body);
             res.send(body);
         } else {
             console.log('error getting document:', name, 'error:', err);
@@ -41,8 +41,7 @@ function getDoc(name, res) {
 
 app.post('/db/profile', function(req, res) {
     var profile = req.body;
-    console.log('*** post ***', profile);
-
+    
     // put in couch db
     profile.doc_key = 'profile';
     insert_doc(profile, 0);
@@ -63,8 +62,9 @@ function insert_doc(mydoc, tried) {
                 });
 
             }
+        } else {
+            console.log('updating document: %s:', mydoc.doc_key, mydoc);
         }
-
     });
 }
 

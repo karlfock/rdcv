@@ -2,21 +2,24 @@
 <html ng-app>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>CV</title>
-    <link rel="stylesheet" href="cv.css">
+    <link rel='stylesheet' href='cv.css'>
 </head>
 
-<body ng-controller="CvCtrl">
+<body ng-controller='CvCtrl'>
 
 
-<div contentEditable="true" ng-model="profile.section1" strip-br="true"></div>
+    <div contentEditable='true' ng-model='profile.section1' strip-br='true'>
 
 
-<pre>model = {{profile.section1}}</pre>
- 
+    </div>
 
-    <script data-main="app/js/main" src="/bower_components/requirejs/require.js"></script>
+
+    <pre>model = {{profile.section1}}</pre>
+
+
+    <script data-main='app/js/main' src='/bower_components/requirejs/require.js'></script>
 </body>
 
 </html>
