@@ -18,7 +18,7 @@ define(['angular'], function(angular) {
                 elm.on('blur', function() {
                     var html = elm.html();
 
-                    if (attrs.stripBr && html == '<br>') {
+                    if (html == '<br>') {
                         html = '';
                     }
 
@@ -38,6 +38,22 @@ define(['angular'], function(angular) {
                 // load init value from DOM
                 ctrl.$setViewValue(elm.html());
             }
+        };
+    })
+
+    .directive('addSection', function($compile) {
+        return {
+            restrict: 'E',
+            template: '<div ng-click="add()">add section</div>',
+            controller: function($scope, $element) {
+                $scope.add = function() {
+                    var idx = $scope.sectionCount++;
+
+                    var el = $compile("<div class='profile' contenteditable ng-model='profile.section"+idx+"'></div>")($scope);
+                    $element.parent().append(el);
+                };
+            }
+
         };
     });
 
