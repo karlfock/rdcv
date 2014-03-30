@@ -2,9 +2,8 @@ define([
     'angular',
     'filters',
     'services',
-    'directives',
     'controllers',
-    ], function (angular, filters, services, directives, controllers) {
+    ], function (angular, filters, services, controllers) {
         'use strict';
 
         // Declare app level module which depends on filters, and services
@@ -13,6 +12,5 @@ define([
             'cvApp.controllers',
             'cvApp.filters',
             'cvApp.services',
-            'cvApp.directives'
         ]);
 });

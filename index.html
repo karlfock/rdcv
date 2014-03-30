@@ -7,20 +7,26 @@
     <link rel='stylesheet' href='app/css/cv.css'>
 </head>
 
+<!-- TODO: use 'controller as' -->
+
 <body ng-controller='CvCtrl'>
 
     <!-- document structure can be created on the fly by nesting for example ng-model='profile.aaa.bbb.ccc'
         will create profile: {aaa: {bbb: {ccc: "..."}}}
     -->
-    <div class='profile' contenteditable ng-model='profile.section1'>
+
+    <form>
+        <input type="text" ng-model="sectionCopy.text" />
+        <button ng-click="saveSection()">Save</button>
+    </form>
+
+
+    <div ng-repeat='section in profile.sections' ng-click='selectSection(section)'>
+
+        *** section: {{section}}
+
     </div>
 
-    <add-section></add-section>
-
-
-    <br><br>profile.section2 = {{profile.section2}}
-
-    <!-- dynamically create new elements on page -->
 
     <script data-main='app/js/main' src='/bower_components/requirejs/require.js'></script>
 </body>
