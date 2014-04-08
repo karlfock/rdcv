@@ -1,39 +1,46 @@
 'use strict';
 
 define([], function() {
-    
-    return function($scope, contentService) {
-        
-        
+
+    return function(contentService) {
+
         contentService.getProfile().then(function(data) {
-            $scope.profile = data;
-        });
+            this.profile = data;
+        }.bind(this));
 
-        $scope.selectSection = null;
-        $scope.sectionCopy = null;
+        this.sectionCopy = null;
 
-        $scope.selectSection = function (section, index) {
-            $scope.selectedSection = section;
-            $scope.selectedSectionIndex = index;
-            $scope.sectionCopy = angular.copy(section);
+        this.editMode = false;
+        this.changeMode = 'Edit';
+
+
+        this.toggleEdit = function() {
+            this.editMode = !this.editMode;
+            this.changeMode = this.editMode ? 'Close': 'Edit';
         };
 
-        $scope.createSection = function () {
-            $scope.profile.sections.push($scope.newSection);
-            contentService.updateProfile($scope.profile);
-            $scope.newSection = null;
+        this.selectSection = function(section, index) {
+            this.selectedSection = section;
+            this.selectedSectionIndex = index;
+            this.sectionCopy = angular.copy(section);
         };
 
-        $scope.updateSection = function () {
-            $scope.profile.sections[$scope.selectedSectionIndex] = $scope.sectionCopy;
-            contentService.updateProfile($scope.profile);
+        this.createSection = function() {
+            this.profile.sections.push(this.newSection);
+            contentService.updateProfile(this.profile);
+            this.newSection = null;
         };
 
-        $scope.deleteSection = function () {
-            $scope.profile.sections.splice($scope.selectedSectionIndex, 1);
-            contentService.updateProfile($scope.profile);
-            $scope.sectionCopy = null;
-            $scope.selectedSectionIndex = -1;
+        this.updateSection = function() {
+            this.profile.sections[this.selectedSectionIndex] = this.sectionCopy;
+            contentService.updateProfile(this.profile);
+        };
+
+        this.deleteSection = function() {
+            this.profile.sections.splice(this.selectedSectionIndex, 1);
+            contentService.updateProfile(this.profile);
+            this.sectionCopy = null;
+            this.selectedSectionIndex = -1;
         };
     };
 });
