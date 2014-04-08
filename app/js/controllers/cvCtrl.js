@@ -1,7 +1,7 @@
 'use strict';
 
 define([], function() {
-    // TODO: is return needed ?
+    
     return function($scope, contentService) {
         
         
@@ -12,15 +12,28 @@ define([], function() {
         $scope.selectSection = null;
         $scope.sectionCopy = null;
 
-        $scope.selectSection = function (section) {
+        $scope.selectSection = function (section, index) {
             $scope.selectedSection = section;
+            $scope.selectedSectionIndex = index;
             $scope.sectionCopy = angular.copy(section);
         };
 
-        $scope.saveSection = function () {
-            $scope.selectedSection.text = $scope.sectionCopy.text;
-
+        $scope.createSection = function () {
+            $scope.profile.sections.push($scope.newSection);
             contentService.updateProfile($scope.profile);
+            $scope.newSection = null;
+        };
+
+        $scope.updateSection = function () {
+            $scope.profile.sections[$scope.selectedSectionIndex] = $scope.sectionCopy;
+            contentService.updateProfile($scope.profile);
+        };
+
+        $scope.deleteSection = function () {
+            $scope.profile.sections.splice($scope.selectedSectionIndex, 1);
+            contentService.updateProfile($scope.profile);
+            $scope.sectionCopy = null;
+            $scope.selectedSectionIndex = -1;
         };
     };
 });

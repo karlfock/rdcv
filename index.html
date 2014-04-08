@@ -8,23 +8,31 @@
 </head>
 
 <!-- TODO: use 'controller as' -->
-
 <body ng-controller='CvCtrl'>
 
-    <!-- document structure can be created on the fly by nesting for example ng-model='profile.aaa.bbb.ccc'
-        will create profile: {aaa: {bbb: {ccc: "..."}}}
-    -->
-
     <form>
-        <input type="text" ng-model="sectionCopy.text" />
-        <button ng-click="saveSection()">Save</button>
+    
+        <div ng-repeat='(key, value) in sectionCopy'>
+            *** key/value: {{key}}/{{value}}
+            <textarea ng-model='sectionCopy[key]' rows="20" cols="50"></textarea>
+        </div>
+
+        <button ng-click="updateSection()">Update</button>
+        <button ng-click="deleteSection()">Delete</button>
     </form>
 
 
-    <div ng-repeat='section in profile.sections' ng-click='selectSection(section)'>
+    <div ng-repeat='section in profile.sections' ng-click='selectSection(section, $index)'>
 
-        *** section: {{section}}
+        *** section: {{section}},  index: {{$index}}
 
+    </div>
+
+    <div>
+
+        <label>time: </label><input type='text' ng-model='newSection.time' />
+        <label>text: </label><input type='text' ng-model='newSection.text' />
+        <button ng-click='createSection()'>Create section</button>
     </div>
 
 

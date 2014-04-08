@@ -1,13 +1,10 @@
 'use strict';
 
-var path = require('path');
+
 var express = require('express');
 var app = express();
 
 var nano = require('nano')('http://localhost:5984');
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(require('connect').bodyParser());
 
@@ -20,8 +17,6 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname));
 
 app.listen(3000);
-
-
 
 app.get('/db/profile', function(req, res) {
     getDoc('profile', res);

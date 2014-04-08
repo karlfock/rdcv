@@ -1,12 +1,5 @@
-define(['angular', 'services'], function(angular) {
+define(['angular', 'controllers/cvCtrl'], function(angular, CvCtrl) {
     'use strict';
-    angular.module('cvApp.controllers', ['cvApp.services'])
 
-    .controller('CvCtrl', function($scope, $injector) {
-        require(['controllers/cvCtrl'], function(cvCtrl) {
-            $injector.invoke(cvCtrl, this, {
-                '$scope': $scope,
-            });
-        });
-    });
+    angular.module('cvApp.controllers', []).controller('CvCtrl', CvCtrl);
 });
